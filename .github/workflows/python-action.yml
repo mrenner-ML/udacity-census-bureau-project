@@ -20,7 +20,7 @@ jobs:
       with:
         aws-access-key-id: AKIASNCP4V2CU5UEOVDD
         aws-secret-access-key: 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
-        aws-region: global
+        aws-region: us-east-2
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
