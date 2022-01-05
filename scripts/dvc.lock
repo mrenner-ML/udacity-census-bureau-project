@@ -1,0 +1,21 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python train_model.py --input_data ../data/cleaned_census.csv
+    deps:
+    - path: ../data/cleaned_census.csv
+      md5: 171eff96d34336df1a3d2d82bdb82fe3
+      size: 3811654
+    - path: train_model.py
+      md5: 6d6899e05dafab1e8227f7a05caa7bbe
+      size: 2847
+    outs:
+    - path: encoder.pkl
+      md5: 267ededb037f75c4f342aa4524418279
+      size: 1929
+    - path: model.pkl
+      md5: 385172b4fc81ca7ace51aeb7a0297874
+      size: 65893561
+    - path: slice_output.txt
+      md5: ebf45551eb64c1f2e8486b2fb7cbb2c1
+      size: 6063
