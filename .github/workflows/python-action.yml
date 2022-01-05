@@ -14,13 +14,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: iterative/setup-dvc@v1
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: AKIASNCP4V2CU5UEOVDD
         aws-secret-access-key: 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
         aws-region: us-east-2
+    - uses: iterative/setup-dvc@v1
+    - name: Run dvc pull
+      run: |
+        dvc pull
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
