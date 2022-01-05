@@ -3,8 +3,8 @@ import pandas as pd
 import pickle
 import pytest
 
-from ml.data import process_data
-from ml.model import inference, compute_model_metrics
+from scripts.ml.data import process_data
+from scripts.ml.model import inference, compute_model_metrics
 
 
 @pytest.fixture
