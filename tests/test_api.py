@@ -7,7 +7,7 @@ client = TestClient(app)
 def test_welcome_message():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == 'HELLO!'
+    assert response.json() == {"message": "Hello Udacity"}
 
 def test_correct_input():
     response = client.post(
