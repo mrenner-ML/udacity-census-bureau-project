@@ -27,20 +27,40 @@ def process_data(data,cat_features,encoder):
 
 # coerce data to appropriate type and add aliases
 class InputData(BaseModel):
-    age: int = 39
-    workclass: str = "State-gov"
-    fnlgt: int = 77516
-    education: str = "Bachelors"
-    education_num: int = Field(13, alias='education-num')
-    marital_status: str = Field("Never-married",alias='marital-status')
-    occupation: str = "Adm-clerical"
-    relationship: str = "Not-in-family"
-    race: str = "White"
-    sex: str = "Male"
-    capital_grain: int = Field(2174, alias='capital-gain')
-    capital_loss: int = Field(0, alias='capital-loss')
-    hours_per_week: int = Field(40, alias='hours-per-week')
-    native_country: str = Field("United-States",alias='native-country')
+    age: int
+    workclass: str
+    fnlgt: int
+    education: str
+    education_num: int = Field(alias='education-num')
+    marital_status: str = Field(alias='marital-status')
+    occupation: str
+    relationship: str
+    race: str
+    sex: str
+    capital_grain: int = Field(alias='capital-gain')
+    capital_loss: int = Field(alias='capital-loss')
+    hours_per_week: int = Field(alias='hours-per-week')
+    native_country: str = Field(alias='native-country')
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "age": 39,
+                "workclass": "State-gov",
+                "fnlgt": 77516,
+                "education": "Bachelors",
+                "education-num": 13,
+                "marital-status": "Never-married",
+                "occupation": "Adm-clerical",
+                "relationship": "Not-in-family",
+                "race": "White",
+                "sex": "Male",
+                "capital-gain": 2174,
+                "capital-loss": 0,
+                "hours-per-week": 40,
+                "native-country": "United-States"
+            }
+        }
 
 # load encoder and model artifact
 encoder = pickle.load(open('./scripts/encoder.pkl', 'rb'))
@@ -63,7 +83,7 @@ app = FastAPI()
 
 @app.get('/')
 async def say_hello():
-    return 'HELLO!'
+    return {"message": "Hello Udacity"}
 
 @app.post("/predict")
 async def run_inference(input_data: InputData):
